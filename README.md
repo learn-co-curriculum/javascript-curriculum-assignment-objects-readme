@@ -1,16 +1,20 @@
+# JavaScript Objects
+
 ## Objectives
++ Explain what an object is in JavaScript is
++ Create an object in JS
++ Access a value from an object
++ Add a key-value pair to an object
++ Delete a key-value pair from an object
++ Iterate over key-value pairs in an object
 
-1. Objective 1
-2. Objective 2
 
-## Instructions
+## What the Student Already Knows
 
-Make the tests pass.
-
-### Part 1: Do Some Stuff
-
-## Resources
-
-* [Stack Exchange](http://www.stackexchange.com) - [Some Question on Stack Exchange](http://www.stackexchange.com/questions/123)
+- Variables
+- Data Type- Strings and Integers
+- Functions
+- Booleans, Comparison Operators, Flow Control 
+- Arrays
 
 <p class='util--hide'>View <a href='https://learn.co/lessons/javascript-curriculum-assignment-objects-readme'>javascript curriculum assignment objects readme </a> on Learn.co and start learning to code for free.</p>

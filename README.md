@@ -300,7 +300,7 @@ pikachu["randomProperty"] // returns undefined
 pikachu.randomProperty // returns undefined
 ```
 
-If you're not sure if the Object is defined, its always good to check, otherwise an error will be thrown if you try to access a property on it.
+If you're not sure that the Object is defined, its always good to check, otherwise an error will be thrown if you try to access a property on it.
 
 ```js
 var bulbasaur;
@@ -362,7 +362,7 @@ pokedex.pikachu = null // since pikachu is no longer being referenced, it has a 
 
 ## Enumeration
 
-Unlike an array, its not easy to figure out what elemnts an Object contains. We can't guess an index or use a normal index based for-loop since the keys are not sequential numbers.
+Unlike an array, its not easy to figure out what elements an Object contains. We can't guess an index or use a normal index based for-loop since the keys are not sequential numbers.
 
 Given the following Object, how could we know how many coupons or what coupons we have?
 
@@ -379,7 +379,7 @@ There are a few ways to enumerate an Object in JavaScript:
 
 #### for in
 
-A for-in loop allows you to iterate through an Object's keys. As part of the for-in loop, we declare a variable and provide an Object to iterate through. In the example below we're going to iterator through our coupons, storing each key in a variable we create as part of the loop called `code`.
+A for-in loop allows you to iterate through an Object's keys. As part of the for-in loop, we declare a variable and provide an Object to iterate through. In the example below we're going to iterate through our coupons, storing each key in a variable we create as part of the loop called `code`.
 
 ```
 for (var code in coupons) {
@@ -397,7 +397,7 @@ for (var code in coupons) {
 }
 ```
 
-Objects are an unordered collection of properties. This means that the order in which code will be set is not guaranteed. So we can't always expect the first loop to be "HOLIDAY", the second loop to be "QHTYB"..etc
+Objects are an unordered collection of properties. This means that the order in which the `code` variable above will be set is not guaranteed. So we can't always expect the first loop to be "HOLIDAY", the second loop to be "QHTYB"..etc
 
 Another way to find out what keys an Object has is using the `Object.keys` method. This method returns an array of key strings that the Object contains. `Object.keys` only returns properties that belong to this Object and not from the prorotype chain. Use of `Object.hasOwnProperty` isn't necessary.
 

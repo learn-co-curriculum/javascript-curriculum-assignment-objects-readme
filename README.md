@@ -120,13 +120,42 @@ var obj = Object.create(null);
 
 By default, Objects are mutable. After an Object is created, we can add additional properties at any time. There are three ways to add a property to an Object. Two of which are similar to assigning a value to a variable. We have an equal sign in the middle. On the left hand side, we have the Object's variable and key. On the right hand side we have the value we want to assign to the Object on that key. The thrid way uses a method called Object.defineProperty.
 
+### Object literals
+
+Object can be defined with a set of keys and values using the Object literal syntax
+
+```js
+var pikachu = {
+	"name": "Pikachu"
+}
+```
+
+When using this syntax, keys don't have to be wrapped in quotes. The following is also valid:
+
+```js
+var pikachu = {
+	name: "Pikachu" // Notice the name key isn't wrapped in quotes
+}
+```
+
 #### Key Indexes
 
-With key indexes, we use the Object's variable name, followed by the key we want to use wrapped in square brackets:
+With key indexes, we use the Object's variable name, followed by the key string we want to use wrapped in square brackets.
+
 ```js
 var pikachu = {};
 pikachu["name"] = "Pikachu"
 ```
+
+We could also use a string variable as the key:
+
+```js
+var prop = "name";
+
+pikachu[prop] = "Pikachu" // same as pikachu["name"] = "Pikachu"
+```
+
+Since we left out the quotes in [prop], we used the value of the prop variable which is "name".
 
 #### Dot notation
 
@@ -212,11 +241,180 @@ pikachu.level = -20 // pikachu.level will return 1
 pikachu.level = 22 // pikachu.level will return 22
 ```
 
-`pikachu.level` doesn't contain a value, instead it uses `pikachu._level` to store and retrieve a value that is set within the range [0, 100]
+`pikachu.level` doesn't contain a value, instead it uses `pikachu._level` to store and retrieve a value that is set within the range [1, 100]
 
-## Removing key-value pairs
+### Immutable Objects
+
+Not all Objects are mutable. There are two methods `Object.seal` and `Object.freeze` that prevent properties from being added to an Object.
+
+#### Object.seal
+
+When `Object.seal` is called on an Object, that Object can no longer have new properties added to it. Pre-existing properties can be modified as long as their property descriptor set `writable` to true
+
+```js
+var pikachu = {
+	name: "Pikachu"
+};
+Object.seal(pikachu);
+pikachu.level = 100 // since this Object has been sealed, this new property will not be set
+pikachu.name = "Pika" // pikachu.name will be modified since this propery existed before the seal and is writable
+```
+
+#### Object.freeze
+
+Similar to `Object.seal`, when `Object.freeze` is called on an Object, that Object can no longer have new properties added to it. In addition to this, existing properties cannot be modified, despite their property descriptors.
+
+```js
+var pikachu = {
+	name: "Pikachu"
+};
+Object.freeze(pikachu);
+pikachu.level = 100 // since this Object has been frozen, this new property will not be set
+pikachu.name = "Pika" // pikachu.name will not be modified since this propery is frozen
+```
+
+## Accessing Object properties
+
+Earlier we noted how there were two ways of assigning a property to an Object that resembled variable assignment. We can access these assigned properties using a similar approach. We've actually seen this numerous times throghout the lesson:
+
+#### Dot Notation
+
+Just as we set a property using dot notation, we can retrieve a property by leaving out the right hand side.
+
+```js
+pikachu.name // returns "Pikachu"
+```
+
+#### Key Indexes
+
+Again, same as adding a property, except we leave out the right hand side.
+
+```js
+pikachu["name"] // returns "Pikachu"
+```
+
+If you try to access a property that doesn't exist, it will return `undefined`
+
+```js
+pikachu["randomProperty"] // returns undefined
+pikachu.randomProperty // returns undefined
+```
+
+If you're not sure if the Object is defined, its always good to check, otherwise an error will be thrown if you try to access a property on it.
+
+```js
+var bulbasaur;
+bulbasaur.name // this will throw a TypeError because bulbasaur it just an empty variable that was never defined as an Object
+```
+Most JavaScript engines will throw an error along the lines of "Uncaught TypeError: Cannot read property 'name' of undefined"
+
+## Removing Object properties
+
+Sometimes you'll want to remove a property from an Object when its no longer necessary. This can help free up memory by removing references to variables that are no longer needed. Since JavaScript is a memory managed language theres no guarantee exactly when memory will be freed, but you can at least ensure that it will happen some time in the future by removing all unused references.
+
+JavaScript provides us with a `delete` operator that we can use to remove properties from an Object. If the property was succesfully deleted or doesn't exist on the Object, it will return `true` otherwise `false` will be returned.
+
+```js
+var obj = {};
+obj.property = 1
+delete obj.property // true
+delete obj.property // false - since it has already been deleted
+```
+
+In the following example, we use JavaScript's `delete` method to remove used coupons from an Object:
+
+```js
+var coupons = {
+	"HOLIDAY": 10,
+	"QHTYB": 50,
+	"MOVIE20": 20
+};
+
+function useCoupon(code) {
+	var discount = 0;
+	if (coupons[code]) {
+		discount = coupons[code];
+		delete coupons[code];
+	}
+	return discount;
+}
+
+useCoupon("QHTYB") // returns 50
+useCoupon("QHTYB") // returns 0 since "QHTYB" was removed from the Object
+```
+
+When a property is created with configurable set to false in the descriptor it cannot be deleted. If the property is writable, we could set it to null in order to aid memory management by removing references.
+
+```js
+var pokedex = {}
+
+Object.defineProperty(pokedex, "pikachu", {
+	configurable: false,
+	writable: true,
+	value: {
+		name: "Pikachu"
+	}
+})
+
+delete pokedex.pikachu // returns false because this property cannot be deleted
+pokedex.pikachu = null // since pikachu is no longer being referenced, it has a better chance of being freed from memory
+```
 
 ## Enumeration
+
+Unlike an array, its not easy to figure out what elemnts an Object contains. We can't guess an index or use a normal index based for-loop since the keys are not sequential numbers.
+
+Given the following Object, how could we know how many coupons or what coupons we have?
+
+```js
+var coupons = {
+	"HOLIDAY": 10,
+	"QHTYB": 50,
+	"MOVIE20": 20
+};
+```
+
+
+There are a few ways to enumerate an Object in JavaScript:
+
+#### for in
+
+A for-in loop allows you to iterate through an Object's keys. As part of the for-in loop, we declare a variable and provide an Object to iterate through. In the example below we're going to iterator through our coupons, storing each key in a variable we create as part of the loop called `code`.
+
+```
+for (var code in coupons) {
+	// ... `code` becomes "HOLIDAY", "QHTYB", or "MOVIE20" after each loop
+}
+```
+
+If there are properties on this Object's prototype chain, they will also be returned in the loop. In most cases this is unwanted, so JavaScript provides a method called `Object.hasOwnProperty` which allows you to verify that the property belongs to this current instance of the Object.
+
+```js
+for (var code in coupons) {
+	if (coupons.hasOwnProperty(code)) {
+	 // ... all properties that belong directly to coupons will pass this if statement
+	}
+}
+```
+
+Objects are an unordered collection of properties. This means that the order in which code will be set is not guaranteed. So we can't always expect the first loop to be "HOLIDAY", the second loop to be "QHTYB"..etc
+
+Another way to find out what keys an Object has is using the `Object.keys` method. This method returns an array of key strings that the Object contains. `Object.keys` only returns properties that belong to this Object and not from the prorotype chain. Use of `Object.hasOwnProperty` isn't necessary.
+
+```js
+Object.keys(coupons) // ["HOLIDAY", "QHTYB", "MOVIE20"]
+```
+
+Again, since Objects are unordered, the order of the keys in the returned Array is not guarenteed to match the order in which they were added.
+
+We can loop through these keys just like with any other array, and use the string to access values on the Object.
+
+```js
+var keys = Object.keys(coupons);
+keys.forEach(function(key){
+	coupons[key] // becomes "HOLIDAY", "QHTYB", or "MOVIE20" after each loop
+})
+```
 
 ## Use Cases
 

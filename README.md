@@ -91,7 +91,7 @@ Objects have many uses such as dictionaries, options, and classes as you'll see 
 So far we've seen one way to create an Object but there are many ways.
 
 
-#### Object literals
+#### Using Object literals
 In our Pokemon example, we created an Object using curly braces. This is called the Object literal syntax:
 
 ```js
@@ -100,7 +100,7 @@ var obj = {};
 
 Objects created using the Object literal syntax can have key-value pairs passed in between the braces as seen in the pikachu example above or have values added to them after creation as we'll see later on in the [Adding key-value pairs section](#adding-key-value-pairs).
 
-#### The Object constructor
+#### Using the Object constructor
 
 The keyword `Object` is a function that when invoked, returns an instance to a new Object.
 
@@ -108,9 +108,9 @@ The keyword `Object` is a function that when invoked, returns an instance to a n
 var obj = new Object();
 ```
 
-#### The Object.create method
+#### Using Object.create method
 
-`Object.create` is a method for creating Objects with a specific prototype. Passing `null` will create an Object that has no prototype. This can be useful for creating dictionaries or caches where we don't care about inherting properties.
+`Object.create` is a method for creating Objects with a specific prototype. Passing `null` will create an Object that has no prototype. This can be useful for creating dictionaries or caches where we don't care about inherting properties from the prototype chain.
 
 ```js
 var obj = Object.create(null);
@@ -140,18 +140,18 @@ pikachu.name = "Pikachu"
 Not all key names can be used with dot notation. For example, the following is invalid JavaScript syntax:
 
 ```js
-pikachu.next-level = 100;
+pikachu.max-level = 100;
 ```
 
 This is invalid because variable names can't have hyphens. If we wanted to use a key that doesn't follow JavaScript naming constraints for variables, we'd have to use the key index since strings can hold any character:
 
 ```js
-pikachu["next-level"] = 100;
+pikachu["max-level"] = 100;
 ```
 
 #### Object.defineProperty
 
-You can also add a key-value pair using the Object.defineProperty method like so:
+You can also add a key-value pair using the `Object.defineProperty` method. This method takes 3 arguments: the Object you want to modify, the name of the property, and an Object literal containing configuration information referred to as a `descriptor`:
 
 ```js
 var pikachu = {}
@@ -160,9 +160,59 @@ Object.defineProperty(pikachu, "name", {
 })
 ```
 
-This seems overly complex but will come in handy when you need more control over how your properties behave when modified, accessed, or if they should be accesible.
+This seems overly complex but will come in handy when you need more control over how your properties behaves. In the example above, we're only using the "value" option in the descriptor, but there are 6 in total: configurable, enumerable, value, writable, get, and set.
 
+```js
+var pikachu = {}
+Object.defineProperty(pikachu, "name", {
+	configurable: false,
+	enumerable: true,
+	value: "Pikachu",
+	writable: false,
+	get: undefined,
+	set: undefined
+})
+```
 
+`configurable` is a boolean that determines wheter or not this property can be deleted from the object and if the descriptor for this property can be updated with another call to Object.defineProperty. Since we set it to false, this property can not be deleted and any additional calls to Object.defineProperty for "name" on pikachu with a new descriptor will throw an error.
+
+`enumerable` is a boolean that determines wheter or not you can enumerate or access this property in a loop. We'll learn more about this in a later section on [enumeration](#enumeration).
+
+`value` is the value to be assigned to this property.
+
+`writable` is a boolean that determiens wheter or not the value of this property can be overwritten. Since we set this option to false, theres no way for us to change Pikachu's name after we set it.
+
+```js
+pikachu.name = "Bulbasaur" // the value remains "Pikachu" because we set writable to false in the property descriptor
+```
+
+`get` is a method that will be called every time this property is accessed. The return value of this method is used as the value of the property.
+
+`set` is a method that will be called every time a value is assigned to this property. The value at the right hand side of the equal sign is passed as an argument to this method.
+
+`get` and `set` are called `accessors`. They can't be combined with the `writable` or `value` options because there is no actual value stored in properties that use accessors. Accessors allow you to create properties that are constrained by certain rules. The following example shows how you can use accessors to make sure that Pikachu's level is never set below 0 or greater than 100.
+
+```js
+Object.defineProperty(pikachu, "level", {
+	get: function(level) {
+		return this._level;
+	},
+	set: function(level) {
+		if (level < 0) {
+			level = 1;
+		} else if (level > 100) {
+			level = 100;
+		}
+		this._level = level;
+	}
+})
+
+pikachu.level = 200 // pikachu.level will return 100
+pikachu.level = -20 // pikachu.level will return 1
+pikachu.level = 22 // pikachu.level will return 22
+```
+
+`pikachu.level` doesn't contain a value, instead it uses `pikachu._level` to store and retrieve a value that is set within the range [0, 100]
 
 ## Removing key-value pairs
 

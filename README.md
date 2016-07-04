@@ -35,7 +35,7 @@ Here we have something that looks similar to an Array in that we have values tha
 
 - Between the commas, we have two pieces of information instead of one. These are known as `key-value` pairs. Keys are strings that describe a value and are followed by a colon `:`. The colon is followed by the value that the key represents. In `"name": "Pikachu"`, "name" is the `key` and "Pikachu" is the `value`.
 
-Lets use new lines to make this Object more readable:
+Lets use newlines to make this Object more readable:
 
 ```js
 var pikachu = {
@@ -76,7 +76,7 @@ Notice how we stored many properties of different types on the pikachu Object. O
 
 
 ### Primer on Prototypes
-Throughout this lesson you'll see the terms `prototype` and `prototype chain` a few times. The prototype is like DNA. Its passed down from parent to child, to grandchild...etc. The prototype chain refers to the list of all ancestors (parents, grandparents, great grandparents...etc). Think of Object as the oldest living relative from which all other types inherit their DNA from. Just as a child would inherit properties from their parents, Objects and other JavaScript types inherit properties. Unlike human properties such as eye color, hair color..etc, these properties are functions, strings, numbers... any type you can think of. Properties that exist on the child but not on the parent are called `direct properties`.
+Throughout this lesson you'll see the terms `prototype` and `prototype chain` a few times. The prototype is like DNA. Its passed down from parent to child, to grandchild...etc. The prototype chain refers to the list of all ancestors (parents, grandparents, great grandparents...etc). Just as a child would inherit properties from their parents, Objects and other JavaScript types inherit properties from Object. Think of Object as the oldest living relative from which all other types inherit their DNA from. Unlike human properties such as eye color, hair color..etc, these properties are functions, strings, numbers... any type you can think of. Properties that exist on the child but not on the parent are called `direct properties`.
 
 ## Creating Objects
 

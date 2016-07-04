@@ -72,10 +72,11 @@ This is equivalent to using the key string:
 pikachu["speak"](); // "pika pika"
 ```
 
-Notice how we stored many properties of different types on the pikachu Object. Objects are like containers for storing variables. An Object can store any type of variable such as a [primitive](#primitives), functions or even other Objects. Objects have many uses besides representing a single entity such as a Pokemon. The main idea behind Objects is that they provide a way to group variables that are easily accessible via descripitve keys.
+Notice how we stored many properties of different types on the pikachu Object. Objects are like containers for storing variables. An Object can store any type of variable such as a primitive, functions or even other Objects. Objects have many uses besides representing a single entity such as a Pokemon. The main idea behind Objects is that they provide a way to group variables that are easily accessible via descripitve keys.
 
 
-
+### Primer on Prototypes
+Throughout this lesson you'll see the terms `prototype` and `prototype chain` a few times. The prototype is like DNA. Its passed down from parent to child, to grandchild...etc. The prototype chain refers to the list of all ancestors (parents, grandparents, great grandparents...etc). Think of Object as the oldest living relative from which all other types inherit their DNA from. Just as a child would inherit properties from their parents, Objects and other JavaScript types inherit properties. Unlike human properties such as eye color, hair color..etc, these properties are functions, strings, numbers... any type you can think of. Properties that exist on the child but not on the parent are called `direct properties`.
 
 ## Creating Objects
 
@@ -196,7 +197,7 @@ Object.defineProperty(pikachu, "name", {
 
 `configurable` is a boolean that determines whether or not this property can be deleted from the Object and if the descriptor for this property can be updated with another call to Object.defineProperty. Since we set it to false, this property can not be deleted and any additional calls to Object.defineProperty for "name" on pikachu with a new descriptor will throw an error.
 
-`enumerable` is a boolean that determines whether or not you can enumerate or access this property in a loop. We'll learn more about this in a later section on [enumeration](#enumeration).
+`enumerable` is a boolean that determines whether or not you can enumerate or access this property in a loop. We'll learn more about this in a later section on [enumeration](#enumerating-object-properies).
 
 `value` is the value to be assigned to this property for the given key.
 
@@ -353,7 +354,7 @@ delete pokedex.pikachu // returns false because this property cannot be deleted
 pokedex.pikachu = null // since pikachu is no longer being referenced, it has a better chance of being freed from memory
 ```
 
-## Enumeration
+## Enumerating Object Properties
 
 Unlike an array, its not easy to figure out what elements an Object contains. In order to get a value from an Object, we need to know exactly what key to use. Objects don't have a length property and we can't use a normal index based for-loop since the keys are not sequential numbers.
 

@@ -102,7 +102,7 @@ var obj = new Object();
 
 #### Using Object.create method
 
-`Object.create` is a method for creating Objects with a specific prototype. Passing `null` will create an Object that has no prototype. This can be useful for creating dictionaries or caches where we don't care about inherting properties from the prototype chain.
+`Object.create` is a method for creating Objects with a specific prototype. Passing `null` will create an Object that has no prototype. This can be useful when we don't care about inherting properties from the prototype chain.
 
 ```js
 var obj = Object.create(null);
@@ -195,7 +195,7 @@ Object.defineProperty(pikachu, "name", {
 });
 ```
 
-`configurable` is a boolean that determines whether or not this property can be deleted from the Object and if the descriptor for this property can be updated with another call to Object.defineProperty. Since we set it to false, this property can not be deleted and any additional calls to Object.defineProperty for "name" on pikachu with a new descriptor will throw an error.
+`configurable` is a boolean that determines whether or not this property can be deleted from the Object and if the descriptor for this property can be updated with another call to Object.defineProperty. Since we set it to false, this property can't be deleted and any additional calls to Object.defineProperty for "name" on pikachu with a new descriptor will throw an error.
 
 `enumerable` is a boolean that determines whether or not you can enumerate or access this property in a loop. We'll learn more about this in a later section on [enumeration](#enumerating-object-properies).
 
@@ -209,7 +209,7 @@ pikachu.name = "Bulbasaur"; // the value remains "Pikachu" because we set writab
 
 `get` is a method that will be called every time this property is accessed. The return value of this method is used as the value of the property.
 
-`set` is a method that will be called every time a value is assigned to this property. The value at the right hand side of the equal sign is passed as an argument to this method.
+`set` is a method that will be called every time a value is assigned to this property. The value at the right hand side of the equal sign is passed in as an argument to this method.
 
 `get` and `set` are called `accessors`. They can't be combined with the `writable` or `value` options because there is no actual value stored in properties that use accessors. Accessors allow you to create properties that are constrained by certain rules. The following example shows how you can use accessors to make sure that Pikachu's level is never set below 1 or greater than 100.
 
@@ -235,11 +235,11 @@ pikachu.level = 22; // pikachu.level will return 22
 
 `pikachu.level` doesn't contain a value, instead it uses `pikachu._level` to store and retrieve a value that is set within the range [1, 100].
 
-<sub>Side Note: Its still possible to modify `pikachu._level` directly. In order to truly get the benefit, we'd have to define the `_level` variable in a private scope where it can't be modified outside of this Object. We'll go into more detail about scopes in a later lesson.</sub>
+<sub>Side Note: Its still possible to modify `pikachu._level` directly. In order to truly get the benefit, we'd have to define the `_level` variable in a private scope where it can't be modified outside of this Object.</sub>
 
 ### Immutable Objects
 
-The opposite of mutable is immutable. Immutable Objects cannot be modified. There are two methods `Object.seal` and `Object.freeze` that prevent properties from being added to an Object.
+The opposite of mutable is immutable. Immutable Objects can't be modified. There are two methods `Object.seal` and `Object.freeze` that prevent properties from being added to an Object.
 
 #### Object.seal
 
@@ -256,7 +256,7 @@ pikachu.name = "Pika"; // pikachu.name will be modified since this propery exist
 
 #### Object.freeze
 
-Similar to `Object.seal`, when `Object.freeze` is called on an Object, that Object can no longer have new properties added to it. In addition to this, existing properties cannot be modified, despite their property descriptors. This makes an Object immutable.
+Similar to `Object.seal`, when `Object.freeze` is called on an Object, that Object can no longer have new properties added to it. In addition to this, existing properties can't be modified, despite their property descriptors. This makes an Object immutable.
 
 ```js
 var pikachu = {
@@ -267,7 +267,7 @@ pikachu.level = 100; // since this Object has been frozen, this new property wil
 pikachu.name = "Pika"; // pikachu.name will not be modified since this propery is frozen
 ```
 
-## Accessing Object properties
+## Accessing Object Properties
 
 Earlier we noted how there were two ways of assigning a property to an Object that resembled variable assignment. We can access these assigned properties using a similar approach. We've actually seen this numerous times throghout the lesson:
 
@@ -302,7 +302,7 @@ bulbasaur.name // this will throw a TypeError because bulbasaur it just an empty
 ```
 Most JavaScript engines will throw an error along the lines of "Uncaught TypeError: Cannot read property 'name' of undefined"
 
-## Removing Object properties
+## Removing Object Properties
 
 Sometimes you'll want to remove a property from an Object when its no longer necessary. This can help free up memory by removing references to variables that are no longer needed. Since JavaScript is a memory managed language theres no guarantee exactly when memory will be freed, but you can at least ensure that it will happen some time in the future by removing all unused references.
 
@@ -334,10 +334,10 @@ function useCoupon(code) {
 }
 
 useCoupon("QHTYB") // returns 50
-useCoupon("QHTYB") // returns 0 since "QHTYB" was removed from the Object
+useCoupon("QHTYB") // returns 0 since "QHTYB" was removed from the coupons Object
 ```
 
-When a property is created with configurable set to false in the descriptor, it cannot be deleted. If the property is writable, we could set it to null in order to aid memory management by removing references.
+When a property is created with configurable set to false in the descriptor, it can't be deleted. If the property is writable, we could set it to null in order to aid memory management by removing references.
 
 ```js
 var pokedex = {}
@@ -350,7 +350,7 @@ Object.defineProperty(pokedex, "pikachu", {
 	}
 })
 
-delete pokedex.pikachu // returns false because this property cannot be deleted
+delete pokedex.pikachu // returns false because this property can't be deleted
 pokedex.pikachu = null // since pikachu is no longer being referenced, it has a better chance of being freed from memory
 ```
 
@@ -367,7 +367,7 @@ var coupons = {
 	"MOVIE20": 20
 };
 
-function couponCodes(coupons) {
+function getCouponCodes(coupons) {
 	// ...
 }
 ```
@@ -378,16 +378,16 @@ JavaScript provides us with a few ways to do this:
 
 A for-in loop allows you to iterate through an Object's keys. As part of the for-in loop, we declare a variable and provide an Object to iterate through. In the example below we're going to iterate through our coupons, storing each key in a new variable we create as part of the loop called `code`.
 
-```
+```js
 for (var code in coupons) {
-	// ... `code` becomes "HOLIDAY", "QHTYB", or "MOVIE20" after each loop
+	// ... code becomes "HOLIDAY", "QHTYB", or "MOVIE20" after each loop
 }
 ```
 
-Inside each loop, a key is chosen from the Object and is assigned to the `code` variable that we specified. We can use this to impement the `couponCodes` function:
+Inside each loop, a key is chosen from the Object and is assigned to the `code` variable that we specified. We can use this to impement the `getCouponCodes` function:
 
-```
-function couponCodes(coupons) {
+```js
+function getCouponCodes(coupons) {
 	var codes = [];
 
 	for (var code in coupons) {
@@ -396,15 +396,15 @@ function couponCodes(coupons) {
 	return codes;
 }
 
-couponCodes(coupons) // returns ["HOLIDAY", "QHTYB", "MOVIE20"]
+getCouponCodes(coupons) // returns ["HOLIDAY", "QHTYB", "MOVIE20"]
 ```
 
-Since Objects are an unordered collection of properties, we can't guarantee that the keys will always be chosen in the same order they were added to the Object. This function could return the coupon codes in any order.
+Since Objects are an unordered collection of properties, we can't guarantee that the `for-in` loop will always choose keys in the same order they were added to the Object. This function could return the coupon codes in any order.
 
-Now that we have access to the Object's keys, we can use them to get the value for that key. Below is a modified version of couponCodes that only returns coupon codes who's discount is equal or greater than a certain value.
+Now that we have access to the Object's keys, we can use them to get the value for that key. Below is a modified version of `getCouponCodes` that only returns coupon codes who's discount is equal or greater than a certain value.
 
-```
-function couponCodes(coupons, minDiscount) {
+```js
+function getCouponCodes(coupons, minDiscount) {
 	var codes = [];
 
 	for (var code in coupons) {
@@ -415,7 +415,7 @@ function couponCodes(coupons, minDiscount) {
 	return codes;
 }
 
-couponCodes(coupons, 20) // returns ["MOVIE20", "QHTYB"]
+getCouponCodes(coupons, 20) // returns ["MOVIE20", "QHTYB"]
 ```
 
 We use the key in order to get the value on the Object, which in this case represents the discount for that code.
@@ -446,7 +446,7 @@ We can loop through these keys just like with any other array, and use the strin
 ```js
 var couponCodes = Object.keys(coupons);
 couponCodes.forEach(function(code){
-	coupons[code] // becomes "HOLIDAY", "QHTYB", or "MOVIE20" after each loop
+	coupons[code] // code becomes "HOLIDAY", "QHTYB", or "MOVIE20" after each loop
 })
 ```
 

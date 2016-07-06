@@ -29,7 +29,7 @@ This is hard to read and can cause confusion when seen throughout the code since
 var pikachu = { "name": "Pikachu", "type": "Electric", "species": "Mouse", "level": 100, "attacks": ["Thunderbolt", "Quick Attack", "Growl", "Slam"], "speak": function(){ return "pika pika"}};
 ```
 
-Here we have something that looks similar to an Array in that we have values that are comma seperated, but there are a few differences:
+Here we have something that looks similar to an Array in that we have values that are comma separated, but there are a few differences:
 
 - Instead of using square brackets `[]` we're using curly braces `{}`.
 
@@ -72,7 +72,7 @@ This is equivalent to using the key string:
 pikachu["speak"](); // "pika pika"
 ```
 
-Notice how we stored many properties of different types on the pikachu Object. Objects are like containers for storing variables. An Object can store any type of variable such as a primitive, functions or even other Objects. Objects have many uses besides representing a single entity such as a Pokemon. The main idea behind Objects is that they provide a way to group variables that are easily accessible via descripitve keys.
+Notice how we stored many properties of different types on the pikachu Object. Objects are like containers for storing variables. An Object can store any type of variable such as a primitive, functions or even other Objects. Objects have many uses besides representing a single entity such as a Pokemon. The main idea behind Objects is that they provide a way to group variables that are easily accessible via descriptive keys.
 
 
 ### Primer on Prototypes
@@ -102,7 +102,7 @@ var obj = new Object();
 
 #### Using Object.create method
 
-`Object.create` is a method for creating Objects with a specific prototype. Passing `null` will create an Object that has no prototype. This can be useful when we don't care about inherting properties from the prototype chain.
+`Object.create` is a method for creating Objects with a specific prototype. Passing `null` will create an Object that has no prototype. This can be useful when we don't care about inhering properties from the prototype chain.
 
 ```js
 var obj = Object.create(null);
@@ -132,7 +132,7 @@ var pikachu = {
 
 #### Key Indexes
 
-With key indexes, we use the Object's variable name, followed by the key string we want to use wrapped in square brackets. This is very similar to accesing an element in an Array via its index number.
+With key indexes, we use the Object's variable name, followed by the key string we want to use wrapped in square brackets. This is very similar to accessing an element in an Array via its index number.
 
 ```js
 var pikachu = {};
@@ -251,7 +251,7 @@ var pikachu = {
 };
 Object.seal(pikachu);
 pikachu.level = 100; // since this Object has been sealed, this new property will not be set
-pikachu.name = "Pika"; // pikachu.name will be modified since this propery existed before the seal and is writable
+pikachu.name = "Pika"; // pikachu.name will be modified since this property existed before the seal and is writable
 ```
 
 #### Object.freeze
@@ -264,12 +264,12 @@ var pikachu = {
 };
 Object.freeze(pikachu);
 pikachu.level = 100; // since this Object has been frozen, this new property will not be set
-pikachu.name = "Pika"; // pikachu.name will not be modified since this propery is frozen
+pikachu.name = "Pika"; // pikachu.name will not be modified since this property is frozen
 ```
 
 ## Accessing Object Properties
 
-Earlier we noted how there were two ways of assigning a property to an Object that resembled variable assignment. We can access these assigned properties using a similar approach. We've actually seen this numerous times throghout the lesson:
+Earlier we noted how there were two ways of assigning a property to an Object that resembled variable assignment. We can access these assigned properties using a similar approach. We've actually seen this numerous times throughout the lesson:
 
 #### Dot Notation
 
@@ -306,7 +306,7 @@ Most JavaScript engines will throw an error along the lines of "Uncaught TypeErr
 
 Sometimes you'll want to remove a property from an Object when its no longer necessary. This can help free up memory by removing references to variables that are no longer needed. Since JavaScript is a memory managed language theres no guarantee exactly when memory will be freed, but you can at least ensure that it will happen some time in the future by removing all unused references.
 
-JavaScript provides us with a `delete` operator that we can use to remove properties from an Object. If the property was succesfully deleted or doesn't exist on the Object, it will return `true` otherwise `false` will be returned.
+JavaScript provides us with a `delete` operator that we can use to remove properties from an Object. If the property was successfully deleted or doesn't exist on the Object, it will return `true` otherwise `false` will be returned.
 
 ```js
 var obj = {};
@@ -439,7 +439,7 @@ Another way to find out what keys an Object has is using the `Object.keys` metho
 Object.keys(coupons) // ["QHTYB", "HOLIDAY", "MOVIE20"]
 ```
 
-Again, since Objects are unordered, the order of the keys in the returned Array is not guarenteed to match the order in which they were added to the Object.
+Again, since Objects are unordered, the order of the keys in the returned Array is not guaranteed to match the order in which they were added to the Object.
 
 We can loop through these keys just like with any other array, and use the string to access values on the Object.
 

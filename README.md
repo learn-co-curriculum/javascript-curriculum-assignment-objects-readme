@@ -8,7 +8,7 @@ We learned how Arrays are great for storing collections of data, but some scenar
 var pikachu  = ["Pikachu", "Electric", "Mouse",  100, "Thunderbolt", "Quick Attack", "Growl", "Slam", function speak(){return "pika pika";}]
 ```
 
-This gives us a collection of data about Pikachu, but accessing specific information is difficult and messy. If we want to know Pikachu's name, type, species, level..etc we'd need to know which index in the array to use.
+This gives us a collection of data about Pikachu, but accessing specific information is difficult and messy. If we want to know Pikachu's name, type, species, level, etc. we'd need to know which index in the array to use.
 
 ```js
 pikachu[0] // "Pikachu"
@@ -50,7 +50,7 @@ var pikachu = {
 };
 ```
 
-This is much more readable than the Array. We know exactly what each value on the object represents because each is associated with a descriptive key. Instead of using Array index numbers, we reference values using the key strings. If we wanted to get Pikachu's name,type,species,level..etc we don't have to remember some random number.
+This is much more readable than the Array. We know exactly what each value on the object represents because each is associated with a descriptive key. Instead of using Array index numbers, we reference values using the key strings. If we wanted to get Pikachu's name,type,species,level, etc. we don't have to remember some random number.
 
 ```js
 pikachu["name"] // "Pikachu"
@@ -76,7 +76,7 @@ Notice how we stored many properties of different types on the pikachu Object. O
 
 
 ### Primer on Prototypes
-Throughout this lesson you'll see the terms `prototype` and `prototype chain` a few times. The prototype is like DNA. Its passed down from parent to child, to grandchild...etc. The prototype chain refers to the list of all ancestors (parents, grandparents, great grandparents...etc). Just as a child would inherit properties from their parents, Objects and other JavaScript types inherit properties from Object. Think of Object as the oldest living relative from which all other types inherit their DNA from. Unlike human properties such as eye color, hair color..etc, these properties are functions, strings, numbers... any type you can think of. Properties that exist on the child but not on the parent are called `direct properties`.
+Throughout this lesson you'll see the terms `prototype` and `prototype chain` a few times. The prototype is like DNA. Its passed down from parent to child, to grandchild, etc. The prototype chain refers to the list of all ancestors (parents, grandparents, great grandparents, etc). Just as a child would inherit properties from their parents, Objects and other JavaScript types inherit properties from Object. Think of Object as the oldest living relative from which all other types inherit their DNA from. Unlike human properties such as eye color, hair color, etc., these properties are functions, strings, numbers -- any type you can think of. Properties that exist on the child but not on the parent are called `direct properties`.
 
 ## Creating Objects
 
@@ -384,7 +384,7 @@ for (var code in coupons) {
 }
 ```
 
-Inside each loop, a key is chosen from the Object and is assigned to the `code` variable that we specified. We can use this to impement the `getCouponCodes` function:
+Inside each loop, a key is chosen from the Object and is assigned to the `code` variable that we specified. We can use this to implement the `getCouponCodes` function:
 
 ```js
 function getCouponCodes(coupons) {

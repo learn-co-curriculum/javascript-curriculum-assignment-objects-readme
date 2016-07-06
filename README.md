@@ -149,7 +149,7 @@ pikachu[prop] = "Pikachu"; // same as pikachu["name"] = "Pikachu"
 
 Since we left out the quotes in [prop], we used the value of the prop variable which is "name".
 
-#### Dot notation
+#### Dot Notation
 
 With dot notation, we use the Object's variable name with a dot at the end, followed by the name of the key we want to use:
 
@@ -158,16 +158,30 @@ var pikachu = {};
 pikachu.name = "Pikachu";
 ```
 
-Not all key names can be used with dot notation. For example, the following is invalid JavaScript syntax:
+#### Valid Property names
+
+Whenever quotes are omitted, properties follow the same naming rules as variables.
 
 ```js
 pikachu.max-level = 100; // this is invalid
 ```
 
-This is invalid because variable names can't have hyphens. If we wanted to use a key that doesn't follow JavaScript's naming constraints for variables, we'd have to use bracket notation since strings can hold any character:
+```js
+var pikachu = {
+	max-level: 100 // this is also invalid
+};
+```
+
+If we wanted to use a property name that doesn't follow JavaScript's naming rules for variables, we'd have to use bracket notation.
 
 ```js
 pikachu["max-level"] = 100; // this is valid
+```
+
+```js
+var pikachu = {
+	"max-level": 100 // this is also valid
+};
 ```
 
 ## Accessing Object Properties

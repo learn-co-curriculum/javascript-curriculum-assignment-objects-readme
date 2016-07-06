@@ -130,9 +130,9 @@ var pikachu = {
 };
 ```
 
-#### Key Indexes
+#### Bracket Notation
 
-With key indexes, we use the Object's variable name, followed by the key string we want to use wrapped in square brackets. This is very similar to accessing an element in an Array via its index number.
+With bracket notation, we use the Object's variable name, followed by the key string we want to use wrapped in square brackets. This is very similar to accessing an element in an Array via its index number.
 
 ```js
 var pikachu = {};
@@ -164,7 +164,7 @@ Not all key names can be used with dot notation. For example, the following is i
 pikachu.max-level = 100; // this is invalid
 ```
 
-This is invalid because variable names can't have hyphens. If we wanted to use a key that doesn't follow JavaScript's naming constraints for variables, we'd have to use the key index since strings can hold any character:
+This is invalid because variable names can't have hyphens. If we wanted to use a key that doesn't follow JavaScript's naming constraints for variables, we'd have to use bracket notation since strings can hold any character:
 
 ```js
 pikachu["max-level"] = 100; // this is valid
@@ -279,7 +279,7 @@ Just as we set a property using dot notation, we can retrieve a property by leav
 pikachu.name // returns "Pikachu"
 ```
 
-#### Key Indexes
+#### Bracket Notation
 
 Again, same as adding a property, except we leave out the right hand side.
 

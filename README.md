@@ -102,7 +102,7 @@ var obj = new Object();
 
 #### Using Object.create method
 
-`Object.create` is a method for creating Objects with a specific prototype. Passing `null` will create an Object that has no prototype. This can be useful when we don't care about inhering properties from the prototype chain.
+`Object.create` is a more advanced way of creating an Object that lets you specify a prototype to inherit properties from. This will become useful as we work more with prototypes, but for now, we'll just pass in `null` since we don't care about inheriting any properties.
 
 ```js
 var obj = Object.create(null);

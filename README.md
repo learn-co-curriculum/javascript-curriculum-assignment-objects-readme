@@ -207,9 +207,7 @@ Most JavaScript engines will throw an error along the lines of "Uncaught TypeErr
 
 ## Removing Object Properties
 
-Sometimes you'll want to remove a property from an Object when its no longer necessary. This can help free up memory by removing references to variables that are no longer needed. Since JavaScript is a memory managed language theres no guarantee exactly when memory will be freed, but you can at least ensure that it will happen some time in the future by removing all unused references.
-
-JavaScript provides us with a `delete` operator that we can use to remove properties from an Object. If the property was successfully deleted or doesn't exist on the Object, it will return `true` otherwise `false` will be returned.
+Sometimes you'll want to remove a property from an Object when its no longer necessary. JavaScript provides us with a `delete` operator that we can use to remove properties from an Object. If the property was successfully deleted or doesn't exist on the Object, it will return `true` otherwise `false` will be returned.
 
 ```js
 var obj = {};
@@ -238,23 +236,6 @@ function useCoupon(code) {
 
 useCoupon("QHTYB") // returns 50
 useCoupon("QHTYB") // returns 0 since "QHTYB" was removed from the coupons Object
-```
-
-When a property is created with configurable set to false in the descriptor, it can't be deleted. If the property is writable, we could set it to null in order to aid memory management by removing references.
-
-```js
-var pokedex = {}
-
-Object.defineProperty(pokedex, "pikachu", {
-	configurable: false,
-	writable: true,
-	value: {
-		name: "Pikachu"
-	}
-})
-
-delete pokedex.pikachu // returns false because this property can't be deleted
-pokedex.pikachu = null // since pikachu is no longer being referenced, it has a better chance of being freed from memory
 ```
 
 ## Enumerating Object Properties

@@ -215,7 +215,7 @@ If you're not sure that the Object is defined, its always good to check, otherwi
 
 ```js
 var bulbasaur;
-bulbasaur.name // this will throw a TypeError because bulbasaur it just an empty variable that was never defined as an Object
+bulbasaur.name // this will throw a TypeError because bulbasaur is just an empty variable that was never defined as an Object
 ```
 Most JavaScript engines will throw an error along the lines of "Uncaught TypeError: Cannot read property 'name' of undefined"
 

@@ -425,7 +425,7 @@ If there are properties on this Object's prototype chain, they will also be retu
 ```js
 for (var code in coupons) {
 	if (!coupons.hasOwnProperty(code)) {
-	 	break;
+	 	continue;
 	}
 }
 ```

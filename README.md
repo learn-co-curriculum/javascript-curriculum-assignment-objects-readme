@@ -306,40 +306,40 @@ object.name // Flatiron
 
 Which one should you use? Here's our recommendation:
 
-- Most of the time, use **dot notation**.
+Most of the time, use **dot notation**.
 
-  ```js
-  var object = {
-    name: 'Flatiron'
-  }
+```js
+var object = {
+  name: 'Flatiron'
+}
 
-  // Recommended
-  object.name // Flatiron
-  ```
+// Recommended
+object.name // Flatiron
+```
 
-- If the key is a variable, use **square brackets**.
+If the key is a variable, use **square brackets**.
 
-  ```js
-  var object = {
-    name: 'Flatiron'
-  }
+```js
+var object = {
+  name: 'Flatiron'
+}
 
-  var key = 'name'
+var key = 'name'
 
-  object[key] // Flatiron
-  object.key  // Doesn't work, because it tries to do object['key']
-  ```
+object[key] // Flatiron
+object.key  // Doesn't work, because it tries to do object['key']
+```
 
-- If the key name contains invalid characters for variable names ([you can check here](https://mothereff.in/js-variables)), use **square brackets**.
+If the key name contains invalid characters for variable names ([you can check here](https://mothereff.in/js-variables)), use **square brackets**.
 
-  ```js
-  var object = {
-    'n-a-m-e': 'Flatiron'
-  }
+```js
+var object = {
+  'n-a-m-e': 'Flatiron'
+}
 
-  object['n-a-m-e'] // Works
-  object.n-a-m-e    // Doesn't work, hyphens are invalid variable names
-  ```
+object['n-a-m-e'] // Works
+object.n-a-m-e    // Doesn't work, hyphens are invalid variable names
+```
 
 Finally, if you try to access a key-value pair *when the key doesn't exist*, you'll get something called `undefined`. You'll learn more about `undefined` later.
 

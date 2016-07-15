@@ -351,7 +351,7 @@ var object = {
 object.address // undefined
 ```
 
-## Adding, Updating, and Removeing Key-Value Pairs
+## Adding, Updating, and Removing Key-Value Pairs
 
 Sometimes you change your mind and you'd want to add or remove key-value pairs to/from an object. Recall our grocery store example:
 

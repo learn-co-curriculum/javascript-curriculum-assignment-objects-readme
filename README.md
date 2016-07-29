@@ -126,6 +126,25 @@ ingredients.garnish = "parsley"
 
 This adds the key `garnish` to the object, and stores the string `"parsely"` under that key. Now we can get it back out with `ingredients.garnish`.
 
+## Deleting data from an object
+
+You can just pull a folder out of the file cabinet. Likewise, you can remove data from an object. Suppose our `ingredients` object now looks like this:
+
+```javascript
+var ingredients = {
+  sauce: "marinara",
+  noodles: "fettuccini",
+  meat: "none"
+}
+```
+
+Now we decide that since we don't have any meat in this dish, we want to get rid of the `meat` key and whatever value it stores. We can do that with the `delete` keyword. The `delete` keyword tells JavaScript "remove this key, and whatever value is stored under it, from the object. You can use it like this:
+
+```javascript
+delete ingredients.meat
+```
+
+Now our `ingredients` object doesn't have a key calle `meat`.
 
 ## Objects and Addresses
 
@@ -139,6 +158,8 @@ var address = {
   zipCode: "84101"
 }
 ```
+
+Before we knew about objects, we stored the address either as a whole string, or as a bunch of individual pieces stuck inside several variables. An object lets us store the address in pieces, but still group them together in one logical chunk.
 
 ## What the Student Already Knows
 
